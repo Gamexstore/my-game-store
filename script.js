@@ -50,14 +50,13 @@ const games = [
     }
 ];
 
-function getGameById(id) {
-    return games.find(g => g.id === id);
-}
-
-// Render Games Grid (Index Page)
+// Elements
 const gamesGrid = document.getElementById('gamesGrid');
 const searchInput = document.getElementById('searchInput');
+const modal = document.getElementById('gameModal');
+const closeModal = document.querySelector('.close-modal');
 
+// Init
 if (gamesGrid) {
     renderGames(games);
 
@@ -70,54 +69,58 @@ if (gamesGrid) {
 
 function renderGames(list) {
     gamesGrid.innerHTML = list.map(game => `
-        <a href="game.html?id=${game.id}" class="game-card">
+        <div class="game-card" onclick="openModal('${game.id}')">
             <img src="${game.image}" alt="${game.title}" class="game-image">
             <div class="game-info">
                 <div class="game-title">${game.title}</div>
                 <div class="game-rating">★ ${game.rating}</div>
             </div>
-        </a>
+        </div>
     `).join('');
 }
 
-// Logic for Game Details Page
-function loadGameDetails(id) {
-    const game = getGameById(id);
+// Modal Logic
+function openModal(id) {
+    const game = games.find(g => g.id === id);
     if (!game) return;
 
-    document.getElementById('gameImg').src = game.image;
-    document.getElementById('gameTitle').innerText = game.title;
-    document.title = `${game.title} - Download`;
+    // Reset State
+    document.getElementById('downloadButtons').style.display = 'flex';
+    document.getElementById('captchaContainer').style.display = 'none';
 
-    // Update Stats
-    if (document.getElementById('gameRating')) {
-        document.getElementById('gameRating').innerText = `★★★★★ ${game.rating}`;
-    }
-    if (document.getElementById('gameReviews')) {
-        document.getElementById('gameReviews').innerText = game.reviews;
-    }
-    if (document.getElementById('gameDownloads')) {
-        document.getElementById('gameDownloads').innerText = game.downloads;
-    }
+    // Populate Data
+    document.getElementById('modalGameImg').src = game.image;
+    document.getElementById('modalGameTitle').innerText = game.title;
+    document.getElementById('modalGameRating').innerText = `★ ${game.rating}`;
+    document.getElementById('modalGameReviews').innerText = game.reviews;
+    document.getElementById('modalGameDownloads').innerText = game.downloads;
 
-    // Update buttons to point to locker
-    document.getElementById('btnAndroid').href = `download.html?id=${id}&device=android`;
-    document.getElementById('btnIos').href = `download.html?id=${id}&device=ios`;
+    // Show Modal
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
 }
 
-// Logic for Locker Page
-async function loadOffers(deviceType) {
-    // Deprecated in favor of external script
-    console.log("External script handling verification.");
+// Close Modal Logic
+if (closeModal) {
+    closeModal.onclick = function () {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
 }
 
-function startVerification() {
-    // Just a UI effect
-    const box = document.querySelector('.warning-box');
-    if (box) {
-        box.innerHTML = 'Verifying offer completion...';
-        box.style.background = 'rgba(0, 255, 0, 0.1)';
-        box.style.borderColor = '#00f260';
-        box.style.color = '#00f260';
+// Close when clicking outside
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
+}
+
+// Show Captcha Logic
+function showCaptcha() {
+    // Hide buttons
+    document.getElementById('downloadButtons').style.display = 'none';
+
+    // Show Captcha Container
+    document.getElementById('captchaContainer').style.display = 'block';
 }

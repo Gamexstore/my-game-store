@@ -116,41 +116,88 @@ header {
     font-size: 0.9rem;
 }
 
-/* Detail Page Styles */
-.detail-container {
-    max-width: 1000px;
-    margin: 4rem auto;
-    padding: 2rem;
-    background: var(--card-bg);
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #222;
+    margin: 5% auto;
+    width: 90%;
+    max-width: 900px;
     border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: var(--glass-border);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease;
+    position: relative;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    z-index: 10;
+}
+
+.close-modal:hover {
+    color: white;
+}
+
+.modal-body {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    padding: 0;
 }
 
-.detail-image {
+.modal-image-container {
     flex: 1;
     min-width: 300px;
-    border-radius: 15px;
-    overflow: hidden;
 }
 
-.detail-image img {
+#modalGameImg {
     width: 100%;
-    height: auto;
-    display: block;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    height: 100%;
+    object-fit: cover;
+    min-height: 400px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
-.detail-content {
-    flex: 2;
+.modal-info {
+    flex: 1.5;
     min-width: 300px;
+    padding: 2rem;
 }
 
-.detail-title {
-    font-size: 2.5rem;
+#modalGameTitle {
+    font-size: 2rem;
     margin-bottom: 1rem;
     background: linear-gradient(90deg, #fff, #bbb);
     -webkit-background-clip: text;
@@ -160,7 +207,8 @@ header {
 .tags {
     display: flex;
     gap: 10px;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .tag {
@@ -170,10 +218,40 @@ header {
     font-size: 0.8rem;
 }
 
+.game-desc {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.stat-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.star-color {
+    color: #ffd700;
+}
+
 .download-buttons {
     display: flex;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .btn {
@@ -184,10 +262,6 @@ header {
     font-weight: bold;
     cursor: pointer;
     transition: transform 0.2s, filter 0.2s;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     color: white;
 }
 
@@ -204,90 +278,23 @@ header {
     filter: brightness(1.2);
 }
 
-/* Locker/Download Page Styles */
-.locker-container {
-    max-width: 600px;
-    margin: 5rem auto;
-    padding: 2rem;
-    text-align: center;
-    background: var(--card-bg);
-    border-radius: 20px;
-    border: var(--glass-border);
-}
-
 .locker-message {
-    font-size: 1.2rem;
-    margin: 1.5rem 0;
-    line-height: 1.6;
+    text-align: center;
     color: #ddd;
-}
-
-.warning-box {
-    background: rgba(255, 166, 0, 0.1);
-    border: 1px solid orange;
-    padding: 1rem;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    color: #ffb74d;
-}
-
-.offers-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.offer-item {
-    background: rgba(255, 255, 255, 0.08);
-    padding: 1rem;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: white;
-    transition: background 0.3s;
-    border: 1px solid transparent;
-}
-
-.offer-item:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: var(--primary-color);
-}
-
-.offer-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
-    margin-right: 1rem;
-    object-fit: cover;
-}
-
-.offer-details {
-    text-align: left;
-}
-
-.offer-name {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 4px;
-}
-
-.offer-desc {
-    font-size: 0.8rem;
-    color: #aaa;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
 }
 
 [data-captcha-enable="true"] {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2rem auto;
+    margin: 1rem auto;
     width: 100%;
     min-height: 200px;
-    /* Force minimum height */
 }
 
-/* Mobile & Tablet Optimizations */
+/* Mobile Optimizations */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -298,56 +305,42 @@ header {
     .search-container {
         width: 100%;
         margin: 0;
-        max-width: none;
     }
 
     .games-grid {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        /* Smaller cards for mobile */
         gap: 1rem;
         padding: 1rem;
     }
 
     .game-image {
         height: 180px;
-        /* Smaller image height */
     }
 
-    .game-title {
-        font-size: 1rem;
+    .modal-content {
+        width: 95%;
+        margin: 2% auto;
     }
 
-    .detail-container {
-        margin: 2rem 1rem;
-        padding: 1.5rem;
+    .modal-body {
         flex-direction: column;
     }
 
-    .detail-image,
-    .detail-content {
-        min-width: 100%;
+    #modalGameImg {
+        height: 250px;
+        border-radius: 20px 20px 0 0;
     }
 
-    .detail-title {
-        font-size: 2rem;
-        text-align: center;
-    }
-
-    .tags {
-        justify-content: center;
-    }
-
-    .stat-row {
-        justify-content: space-around;
-        gap: 10px !important;
+    .modal-info {
+        padding: 1.5rem;
     }
 
     .download-buttons {
         flex-direction: column;
     }
 
-    .locker-container {
-        margin: 2rem 1rem;
-        padding: 1.5rem;
+    .stat-row {
+        justify-content: space-between;
+        gap: 10px;
     }
 }
