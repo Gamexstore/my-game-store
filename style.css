@@ -344,3 +344,44 @@ header {
         gap: 10px;
     }
 }
+
+/* New Buttons Styles */
+.card-actions {
+    padding: 0 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-btn {
+    display: block;
+    width: 100%;
+    padding: 0.6rem;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: white;
+    transition: transform 0.2s, filter 0.2s;
+}
+
+.android-btn {
+    background: linear-gradient(45deg, #3DDC84, #2a9d5d);
+}
+
+.ios-btn {
+    background: linear-gradient(45deg, #007AFF, #0056b3);
+}
+
+.card-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* Ensure game-card handles the height */
+.game-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

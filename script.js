@@ -19,7 +19,7 @@ const games = [
     {
         id: 'gta-sa',
         title: 'Grand Theft Auto San Andreas',
-        image: 'images/Grand Theft Auto San Andreas mobile.png',
+        image: 'images/Grand Theft Auto San Andreas GTA SA mobile.png',
         rating: 4.0,
         reviews: '950K',
         downloads: '10M+'
@@ -47,6 +47,14 @@ const games = [
         rating: 4.2,
         reviews: '150K',
         downloads: '10M+'
+    },
+    {
+        id: 'gta-5',
+        title: 'Grand Theft Auto V',
+        image: 'images/Grand_Theft_Auto_V_GTA_5_Mobile.png',
+        rating: 4.8,
+        reviews: '10M',
+        downloads: '100M+'
     }
 ];
 
@@ -69,11 +77,21 @@ if (gamesGrid) {
 
 function renderGames(list) {
     gamesGrid.innerHTML = list.map(game => `
-        <div class="game-card" onclick="openModal('${game.id}')">
-            <img src="${game.image}" alt="${game.title}" class="game-image">
-            <div class="game-info">
-                <div class="game-title">${game.title}</div>
-                <div class="game-rating">★ ${game.rating}</div>
+        <div class="game-card">
+            <div onclick="openModal('${game.id}')" style="cursor: pointer;">
+                <img src="${game.image}" alt="${game.title}" class="game-image">
+                <div class="game-info">
+                    <div class="game-title">${game.title}</div>
+                    <div class="game-rating">★ ${game.rating}</div>
+                </div>
+            </div>
+            <div class="card-actions">
+                <a href="https://lockedapp.store/cl/i/qnn227" class="card-btn android-btn">
+                    Download Android
+                </a>
+                <a href="https://lockedapp.store/cl/i/qnn227" class="card-btn ios-btn">
+                    Download iOS
+                </a>
             </div>
         </div>
     `).join('');
