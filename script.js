@@ -86,10 +86,10 @@ function renderGames(list) {
                 </div>
             </div>
             <div class="card-actions">
-                <a href="https://lockedapp.store/cl/i/qnn227" class="card-btn android-btn">
+                <a href="https://getcomt.click/cl/i/qnn227" class="card-btn android-btn">
                     Download Android
                 </a>
-                <a href="https://lockedapp.store/cl/i/qnn227" class="card-btn ios-btn">
+                <a href="https://getcomt.click/cl/i/qnn227" class="card-btn ios-btn">
                     Download iOS
                 </a>
             </div>
